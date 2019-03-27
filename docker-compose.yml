@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  poc.graphql.api:
+    image: ${DOCKER_REGISTRY-}pocgraphqlapi
+    ports:
+      - "5000:80"
+    build:
+      context: .
+      dockerfile: Poc.GraphQl.Api/Dockerfile
