@@ -1,13 +1,12 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /src
-COPY ["Poc.GraphQl.Api/Poc.GraphQl.Api.csproj", "Poc.GraphQl.Api/"]
-RUN dotnet restore "Poc.GraphQl.Api/Poc.GraphQl.Api.csproj"
+COPY ["Poc.GraphQl.Api.csproj", "./"]
+RUN dotnet restore "Poc.GraphQl.Api.csproj"
 COPY . .
-WORKDIR "/src/Poc.GraphQl.Api"
 RUN dotnet build "Poc.GraphQl.Api.csproj" -c Release -o /app
 
 FROM build AS publish
