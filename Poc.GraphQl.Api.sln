@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poc.GraphQl.Api", "Poc.Grap
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1B36046C-1DA3-4F64-9366-DA8495AE45FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.GraphQl.Data", "Poc.GraphQl.Data\Poc.GraphQl.Data.csproj", "{8B39F2EA-0F2C-413E-98AE-82BCB6F656D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B36046C-1DA3-4F64-9366-DA8495AE45FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B36046C-1DA3-4F64-9366-DA8495AE45FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B36046C-1DA3-4F64-9366-DA8495AE45FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B39F2EA-0F2C-413E-98AE-82BCB6F656D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B39F2EA-0F2C-413E-98AE-82BCB6F656D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B39F2EA-0F2C-413E-98AE-82BCB6F656D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B39F2EA-0F2C-413E-98AE-82BCB6F656D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
