@@ -3,12 +3,13 @@ using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Poc.GraphQl.Api.Models;
 using Poc.GraphQl.Api.Services;
 using Poc.GraphQl.Data;
+using Poc.GraphQl.Data.Repositories;
 
 namespace Poc.GraphQl.Api
 {
@@ -24,17 +25,28 @@ namespace Poc.GraphQl.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc();
+
+            services.AddDbContext<ProductManagementContext>(options => options.UseInMemoryDatabase("ProductStore"));
 
             services.AddHttpContextAccessor();
             services.AddSingleton<ContextServiceLocator>();
-            services.AddTransient<IDataRepository, DataRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
-            services.AddSingleton<DataQuery>();
-            services.AddSingleton<DataType>();
+            services.AddSingleton<ProductQuery>();
+            services.AddSingleton<ProductMutation>();
+            services.AddSingleton<ProductType>();
+            /*
+            var connection = @"Server=localhost;Database=productstore;User=tester;Password=testing";
+            services.AddDbContext<ProductManagementContext>(options => 
+                options.UseMySql(connection, mySqlOptions =>
+                {
+                    mySqlOptions.ServerVersion(new Version(5, 7, 25), ServerType.MySql);
+                }));
+            */
 
             var serviceProvider = services.BuildServiceProvider();
-            services.AddSingleton<ISchema>(new DataSchema(new FuncDependencyResolver(type => serviceProvider.GetService(type))));
+            services.AddSingleton<ISchema>(new ProductSchema(new FuncDependencyResolver(type => serviceProvider.GetService(type))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

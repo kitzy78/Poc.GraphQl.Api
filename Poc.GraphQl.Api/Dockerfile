@@ -10,10 +10,14 @@ COPY . .
 WORKDIR /src/Poc.GraphQl.Api
 RUN dotnet build Poc.GraphQl.Api.csproj -c Release -o /app
 
+#RUN dotnet ef migrations add InitialCreate
+#RUN dotnet ef migrations script -o /migrations/init.sql
+
 FROM build AS publish
 RUN dotnet publish Poc.GraphQl.Api.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+
 ENTRYPOINT ["dotnet", "Poc.GraphQl.Api.dll"]

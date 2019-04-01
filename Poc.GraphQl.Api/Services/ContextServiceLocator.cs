@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Poc.GraphQl.Data;
+using Poc.GraphQl.Data.Repositories;
 
 namespace Poc.GraphQl.Api.Services
 {
@@ -13,6 +13,6 @@ namespace Poc.GraphQl.Api.Services
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public IDataRepository DataRepository => httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IDataRepository>();
+        public IProductRepository ProductRepository => httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IProductRepository>();
     }
 }

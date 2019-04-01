@@ -1,0 +1,14 @@
+﻿FROM mysql/mysql-server:5.7.25 as builder
+
+ENV MYSQL_ROOT_PASSWORD=testing
+ENV MYSQL_DATABASE=productstore
+ENV MYSQL_USER=tester
+ENV MYSQL_PASSWORD=testing
+
+COPY scripts/*.sh ./
+# RUN ls
+# COPY /migrations/init.sql /docker-entrypoint-initdb.d/
+
+# CMD ["mysqld"]
+# CMD ["./wait-for-it.sh", "http://localhost:5000/api/values", "--", "startdb.sh"]
+EXPOSE 3306
